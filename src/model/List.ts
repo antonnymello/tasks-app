@@ -22,6 +22,30 @@ export default class List {
     return this.#filter;
   }
 
+  filterActives() {
+    if (!this.showingActives()) {
+      return new List(this.#all, FilterType.ACTIVE);
+    } else {
+      return this;
+    }
+  }
+
+  filterDone() {
+    if (!this.showingDone()) {
+      return new List(this.#all, FilterType.DONE);
+    } else {
+      return this;
+    }
+  }
+
+  removeFilter() {
+    if (!this.showingAll()) {
+      return new List(this.#all);
+    } else {
+      return this;
+    }
+  }
+
   showingAll(): boolean {
     return this.#filter === FilterType.NONE;
   }
