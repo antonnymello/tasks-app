@@ -21,4 +21,16 @@ export default class List {
   get filter() {
     return this.#filter;
   }
+
+  showingAll(): boolean {
+    return this.filter === FilterType.NONE;
+  }
+
+  showingActives(): boolean {
+    return this.filter === FilterType.ACTIVE;
+  }
+
+  showingDone(): boolean {
+    return this.filter === FilterType.DONE;
+  }
 }
