@@ -1,8 +1,19 @@
-import Task from '../model/task';
+import initialTasks from '../data/mock';
 
 export default function Home() {
-  let task: Task = new Task(1, 'Task example');
-  task = task.changeStatus();
+  let tasks = initialTasks;
+
+  const renderTasks = () => {
+    return tasks.items.map((task) => {
+      return (
+        <div key={task.id}>
+          <span>{task.id}</span>
+          <span>{task.description}</span>
+          <span>{task.done ? 'Done' : 'Active'}</span>
+        </div>
+      );
+    });
+  };
 
   return (
     <div
@@ -17,9 +28,7 @@ export default function Home() {
       h-screen
       `}
     >
-      <span>{task.id}</span>
-      <span>{task.description}</span>
-      <span>{task.done ? 'Done' : 'Active'}</span>
+      {renderTasks()}
     </div>
   );
 }

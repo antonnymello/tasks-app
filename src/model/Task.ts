@@ -29,15 +29,19 @@ export default class Task {
     return this.#done;
   }
 
+  get active() {
+    return !this.done;
+  }
+
   changeStatus() {
-    return this.done ? this.active() : this.conclude();
+    return this.done ? this.activate() : this.conclude();
   }
 
   conclude() {
     return Task.createDone(this.id, this.description);
   }
 
-  active() {
+  activate() {
     return Task.createActive(this.id, this.description);
   }
 }
