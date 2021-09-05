@@ -1,20 +1,6 @@
-import initialTasks from '../data/mock';
+import Item from '../components/list/Item';
 
 export default function Home() {
-  let tasks = initialTasks;
-
-  const renderTasks = () => {
-    return tasks.items.map((task) => {
-      return (
-        <div key={task.id}>
-          <span>{task.id}</span>
-          <span>{task.description}</span>
-          <span>{task.done ? 'Done' : 'Active'}</span>
-        </div>
-      );
-    });
-  };
-
   return (
     <div
       className={`
@@ -23,12 +9,15 @@ export default function Home() {
       items-center
       text-white
       bg-gradient-to-b
-      from-purple-500 
-      to-purple-100
+      from-gray-600
+      to-gray-900
       h-screen
       `}
     >
-      {renderTasks()}
+      <ul>
+        <Item value='Example #01' done={false} changeStatus={() => {}} />
+        <Item value='Example #02' done={true} changeStatus={() => {}} />
+      </ul>
     </div>
   );
 }

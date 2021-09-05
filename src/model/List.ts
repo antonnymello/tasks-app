@@ -22,7 +22,26 @@ export default class List {
     return this.#filter;
   }
 
-  filterActives() {
+  createTask(task: Task): List {
+    const all = [...this.#all];
+    all.push(task);
+    return new List(all, this.filter);
+  }
+
+  updateTask(modifiedTask: Task): List {
+    const all = this.#all.map((task) => {
+      return task.id === modifiedTask.id ? modifiedTask : task;
+    });
+
+    return new List(all, this.filter);
+  }
+
+  removeDoneTasks() {
+    const concludedTasks = this.#all.filter((task) => task.active);
+    return new List(concludedTasks);
+  }
+
+  filterActives(): List {
     if (!this.showingActives()) {
       return new List(this.#all, FilterType.ACTIVE);
     } else {
@@ -30,7 +49,7 @@ export default class List {
     }
   }
 
-  filterDone() {
+  filterDone(): List {
     if (!this.showingDone()) {
       return new List(this.#all, FilterType.DONE);
     } else {
@@ -38,7 +57,7 @@ export default class List {
     }
   }
 
-  removeFilter() {
+  removeFilter(): List {
     if (!this.showingAll()) {
       return new List(this.#all);
     } else {
