@@ -1,5 +1,5 @@
 import List from '../../model/List';
-import ButtonList from './ButtonList';
+import ListButton from './ListButton';
 import Item from './Item';
 
 interface TaskListProps {
@@ -42,9 +42,9 @@ const TaskList = (props: TaskListProps) => {
       >
         {renderTasks()}
         <li className='p-5'>
-          <ButtonList selected={true} onClick={() => {}}>
+          <ListButton selected={true} onClick={() => {}}>
             All
-          </ButtonList>
+          </ListButton>
         </li>
       </ul>
     </div>

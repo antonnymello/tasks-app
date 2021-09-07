@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import TaskList from '../components/list/TaskList';
+import ListTasks from '../components/list/ListTasks';
 import initialTasks from '../data/mock';
 
 export default function Home() {
@@ -15,7 +15,7 @@ export default function Home() {
       bg-gray-300
       `}
     >
-      <TaskList
+      <ListTasks
         tasks={tasks}
         changed={(newTasks) => {
           setTasks(newTasks);
