@@ -1,19 +1,19 @@
 import Selection from './Selection';
 
-interface ItemListProps {
+interface ItemProps {
   value: string;
   done: boolean;
   changeStatus: () => void;
 }
 
-const ItemList = (props: ItemListProps) => {
+const Item = (props: ItemProps) => {
   const textStyle = props.done ? 'line-through text-gray-300' : 'text-gray-500';
 
   return (
     <li
       onClick={props.changeStatus}
       className={`
-      bg-white text-black
+      text-black
       flex items-center p-5 text-xl
       border-b border-gray-400 cursor-pointer
   `}
@@ -24,4 +24,4 @@ const ItemList = (props: ItemListProps) => {
   );
 };
 
-export default ItemList;
+export default Item;
