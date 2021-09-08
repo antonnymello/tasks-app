@@ -1,11 +1,11 @@
-interface ButtonListProps {
+interface ListButtonProps {
   selected?: boolean;
-  className?: boolean;
+  className?: string;
   children: any;
   onClick: (event: any) => void;
 }
 
-const ButtonList = (props: ButtonListProps) => {
+const ListButton = (props: ListButtonProps) => {
   const selectedBorder = props.selected ? 'border-b-4 border-purple-400' : '';
   return (
     <button
@@ -22,4 +22,4 @@ const ButtonList = (props: ButtonListProps) => {
   );
 };
 
-export default ButtonList;
+export default ListButton;

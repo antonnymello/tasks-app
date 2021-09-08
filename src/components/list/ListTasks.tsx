@@ -1,17 +1,15 @@
 import List from '../../model/List';
-import ListButton from './ListButton';
 import Item from './Item';
+import ListFooter from './ListFooter';
 
-interface TaskListProps {
+interface ListTasksProps {
   tasks: List;
   changed: (tasks: List) => void;
 }
 
-const TaskList = (props: TaskListProps) => {
-  const { tasks } = props;
-
+const ListTasks = (props: ListTasksProps) => {
   const renderTasks = () => {
-    return tasks.items.map((task) => {
+    return props.tasks.items.map((task) => {
       return (
         <Item
           key={task.id}
@@ -19,7 +17,7 @@ const TaskList = (props: TaskListProps) => {
           done={task.done}
           changeStatus={() => {
             const modifiedTask = task.changeStatus();
-            const newList = tasks.updateTask(modifiedTask);
+            const newList = props.tasks.updateTask(modifiedTask);
             props.changed(newList);
           }}
         />
@@ -30,25 +28,22 @@ const TaskList = (props: TaskListProps) => {
   return (
     <div
       className={`
-    flex w-3/5
+    flex w-3/5 items-start relative
     `}
     >
       <ul
         className={`
+      absolute -top-14
       w-full
       list-none
       bg-white shadow-lg rounded-lg
       `}
       >
         {renderTasks()}
-        <li className='p-5'>
-          <ListButton selected={true} onClick={() => {}}>
-            All
-          </ListButton>
-        </li>
+        <ListFooter tasks={props.tasks} changed={props.changed} />
       </ul>
     </div>
   );
 };
 
-export default TaskList;
+export default ListTasks;
